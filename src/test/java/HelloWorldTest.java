@@ -7,9 +7,9 @@ public class HelloWorldTest {
     @Test
     public void testHelloWorld(){
         Response response = RestAssured
-                .get("https://playground.learnqa.ru/api/hello")
+                .get("https://playground.learnqa.ru/api/get_text")
                         .andReturn();
-        response.prettyPrint();
-        System.out.println("Hello world");
+        String anser = response.getBody().asString();
+        System.out.println(anser);
     }
 }
