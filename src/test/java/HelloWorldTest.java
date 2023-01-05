@@ -63,6 +63,6 @@ public class HelloWorldTest {
                 .get("https://playground.learnqa.ru/api/get_json_homework")
                 .jsonPath();
         List value = response.get("messages");
-        System.out.println(value.get(0));
+        System.out.println(value.get(1));
     }
 }
