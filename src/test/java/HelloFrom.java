@@ -15,12 +15,12 @@ public class HelloFrom {
     @Test
     public void testRestAssured() {
 
-        //Map<String, String> params = new HashMap<>();
-        //params.put("name", "Андрей");
+        Map<String, String> params = new HashMap<>();
+        params.put("name", "Андрей");
 
         JsonPath response = RestAssured
                 .given()
-                //.queryParams(params)
+                .queryParams(params)
                 .get("https://playground.learnqa.ru/api/hello")
                 .jsonPath();
         String name = response.get("answer");

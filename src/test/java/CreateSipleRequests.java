@@ -45,15 +45,57 @@ public class CreateSipleRequests {
                     .when()
                     .get(baseUrl)
                     .andReturn();
-            int statusCode = response.getStatusCode();
+            int statusCode = response.getStatusCode(); // находим статус код
             System.out.println(statusCode);
             if (statusCode == 200) {
                 break;
             }
-            String locationHeaders = response.getHeader("Location");
+            String locationHeaders = response.getHeader("Location"); //находим новый URL
             System.out.println(locationHeaders);
             baseUrl = locationHeaders;
         }
+    }
+    @Test // Ex8: Токены
+    public void testRestHomeWork8() throws InterruptedException {
+        String baseURL = "https://playground.learnqa.ru/ajax/api/longtime_job";
+        JsonPath responseNoToken = RestAssured
+                .given()
+                .get(baseURL)
+                .jsonPath();
+        String getToken = responseNoToken.get("token");
+        int getSecond = responseNoToken.get("seconds");
+        System.out.println(getSecond);
+        System.out.println(getToken);
 
+//        Thread.sleep(getSecond*500);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("token", getToken);
+        Response responseNotReady = RestAssured
+                .given()
+                .queryParams(params)
+                .get("https://playground.learnqa.ru/ajax/api/longtime_job")
+                .andReturn();
+        responseNotReady.prettyPrint();
+
+        Thread.sleep(getSecond*1000);
+
+        Map<String, String> params1 = new HashMap<>();
+        params.put("token", getToken);
+        Response responseReady = RestAssured
+                .given()
+                .queryParams(params1)
+                .get("https://playground.learnqa.ru/ajax/api/longtime_job")
+                .andReturn();
+        responseReady.prettyPrint();
+    }
+    @Test
+    public void testRestStatus() throws InterruptedException {
+        Response response = RestAssured
+                .given()
+                .get("https://playground.learnqa.ru/ajax/api/longtime_job")
+                .andReturn();
+        Thread.sleep(1);
+        response.print();
     }
 }
