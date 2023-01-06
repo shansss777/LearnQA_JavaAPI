@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CreateSipleRequests {
+public class CreateSimpleRequests {
 
     @Test // Ex5: Парсинг JSON
     public void testRestHomeWork5() {
@@ -81,7 +81,7 @@ public class CreateSipleRequests {
         Thread.sleep(getSecond*1000);
 
         Map<String, String> params1 = new HashMap<>();
-        params.put("token", getToken);
+        params1.put("token", getToken);
         Response responseReady = RestAssured
                 .given()
                 .queryParams(params1)
