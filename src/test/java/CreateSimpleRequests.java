@@ -4,9 +4,12 @@ import io.restassured.response.Response;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class CreateSimpleRequests {
 
@@ -16,8 +19,11 @@ public class CreateSimpleRequests {
                 //.given()
                 .get("https://playground.learnqa.ru/api/get_json_homework")
                 .jsonPath();
-        List value = response.get("messages");
+        ArrayList value = response.get("messages");
         System.out.println(value.get(1));
+
+
+
     }
     @Test // Ex6: Редирект
     public void testRestHomeWork6() {
