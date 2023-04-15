@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class HelloFrom {
     @Test
     public void helloFromDmitriy() {
@@ -55,6 +57,18 @@ public class HelloFrom {
                 .andReturn();
         int statusCode = response.getStatusCode();
         System.out.println(statusCode);
+    }
+    @Test
+    public void testassert() {
+        Response response = RestAssured
+                .get("https://playground.learnqa.ru/api/map")
+                .andReturn();
+                assertTrue(response.statusCode() == 200, "Unexpected status code");
+    }
+    @Test
+    public void testStringLengs() {
+        String phrase = "kdJFsjfdjfdsjhfdhfdbbfds";
+        assertTrue(phrase.length() > 15, "Unexpected length");
     }
 }
 
